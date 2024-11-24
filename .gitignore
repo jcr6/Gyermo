@@ -2,4 +2,5 @@ Exe
 MKL_*
 *.obj
 *.o
-
+x64
+.vs
