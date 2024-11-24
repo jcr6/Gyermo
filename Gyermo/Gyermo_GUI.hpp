@@ -22,16 +22,32 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.23
+// Version: 24.11.24
 // End License
 #pragma once
-
+#include <Slyvina.hpp>
+#include <june19_core.hpp>
 
 namespace Slyvina {
 	namespace JCR6 {
 		namespace Gyermo {
 			void UI_Init();
 			void UI_Run();
+			void UI_Done();
+
+			extern June19::j19gadget
+				* UI_DataEntry,
+				* UI_DataMain,
+				* UI_DataType,
+				* UI_DataSize,
+				* UI_DataRatio,
+				* UI_DataAliasLabel,
+				* UI_DataAlias,
+				* UI_DataOtherLabel,
+				* UI_DataOther,
+				* UI_DataResourceType;
+
+			extern std::map<String, June19::j19gadget*> UI_DataFields;
 		}
 	}
 }
