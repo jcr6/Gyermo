@@ -1,4 +1,3 @@
-#include "Gyermo_Assets.hpp"
 // License:
 // 
 // Gyermo
@@ -23,8 +22,9 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.23
+// Version: 24.11.24
 // End License
+#include "Gyermo_Assets.hpp"
 
 #include <JCR6_Core.hpp>
 #include <SlyvQCol.hpp>
