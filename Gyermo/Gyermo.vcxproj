@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{b1210ebb-7250-4e14-af69-cb115d48aa19}</ProjectGuid>
+    <RootNamespace>Gyermo</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)\Exe\Windows\</OutDir>
+    <IncludePath>E:\Projects\Applications\Slyvina\Libs\Units\Headers;E:\Projects\Applications\Slyvina\Libs\June19;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Libs\Kitty\Headers;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Exe\Windows\</OutDir>
+    <IncludePath>E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Libs\Kitty\Headers;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;E:\Projects\Applications\Slyvina\Libs\Units\Headers;E:\Projects\Applications\Slyvina\Libs\June19\head;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>pwsh Gyermo_Jalondi.ps1</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Run Jalondi to package all the assets</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Core.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_JQL.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_QuakePAK.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_WAD.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Westwood.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Write.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_button.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_checkbox.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_core.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_label.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_listbox.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_picture.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_radio.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_scrollbar.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_tabber.cpp" />
+    <ClCompile Include="..\..\..\Libs\June19\src\june19_textfield.cpp" />
+    <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSA.cpp" />
+    <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSE.cpp" />
+    <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSG.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvAsk.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvBank.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvDir.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvDirry.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvMD5.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvOpenURL.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvQCol.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvRoman.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvSharedArray.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvSTOI.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvStream.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvString.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvTime.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvVolumes.cpp" />
+    <ClCompile Include="Gyermo_Assets.cpp" />
+    <ClCompile Include="Gyermo_Config.cpp" />
+    <ClCompile Include="Gyermo_GUI.cpp" />
+    <ClCompile Include="Gyermo_Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Gyermo_Assets.hpp" />
+    <ClInclude Include="Gyermo_Colors.hpp" />
+    <ClInclude Include="Gyermo_Config.hpp" />
+    <ClInclude Include="Gyermo_GUI.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libFLAC-8.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libmodplug-1.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libmpg123-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libogg-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libopus-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libopusfile-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libpng16-16.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libtiff-5.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libvorbis-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libvorbisfile-3.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libwebp-7.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\SDL2.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\SDL2_image.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\SDL2_mixer.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\zlib1.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\Libs\JCR6\3rdParty\zlib\zlib.lib" />
+    <Library Include="..\..\..\Libs\TQSL\SDL2\SDL2.lib" />
+    <Library Include="..\..\..\Libs\TQSL\SDL2\SDL2main.lib" />
+    <Library Include="..\..\..\Libs\TQSL\SDL2\SDL2test.lib" />
+    <Library Include="..\..\..\Libs\TQSL\SDL2\SDL2_image.lib" />
+    <Library Include="..\..\..\Libs\TQSL\SDL2\SDL2_mixer.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\Libs\JCR6\3rdParty\zlib\zlib.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <None Include="Gyermo_Jalondi.lua" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
