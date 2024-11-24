@@ -4,3 +4,4 @@ MKL_*
 *.o
 x64
 .vs
+Gyermo.vcxproj.user
