@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.24
+// Version: 24.11.25
 // End License
 #include <SDL_main.h>
 #include <SlyvQCol.hpp>
@@ -35,6 +35,8 @@
 #include <JCR6_zlib.hpp>
 #include "Gyermo_GUI.hpp"
 #include "Gyermo_Assets.hpp"
+#include "Gyermo_ReadJCR.hpp"
+
 using namespace Slyvina;
 using namespace Slyvina::Units;
 using namespace Slyvina::JCR6;
@@ -52,6 +54,7 @@ int main(int argc, char** args) {
 	init_zlib();
 	JCR6_InitRealDir();
 	Asset_Init(args[0]);
-	UI_Init();
+	UI_Init(); Renew(startres);
 	UI_Run();
+	UI_Done();
 }
