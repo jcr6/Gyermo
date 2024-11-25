@@ -22,8 +22,9 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.25
+// Version: 24.11.25 I
 // End License
+
 #include "Gyermo_ReadJCR.hpp"
 #include "Gyermo_GUI.hpp"
 #include <JCR6_Core.hpp>
@@ -48,6 +49,8 @@ namespace Slyvina {
 					std::vector<std::string> dirs{  };
 					auto EL{ __CurrentJCR->Entries() };
 					auto PWDS{ Split(__CurrentPath,'/') };
+					UI_DataResourceType->Caption = _JT_Dir::Recognize(__CurrentJCRFile);
+					if (!EL) { Notify("Error! Entry list turned out to be a NULL pointer!"); return; }
 					for (auto E : *EL) {
 						//if (!VectorContains(dirs, ExtractDir(E->Name()))) dirs.push_back(ExtractDir(E->Name()));
 						auto p{ ExtractDir(Upper(E->Name())) };
