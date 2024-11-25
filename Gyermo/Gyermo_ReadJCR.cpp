@@ -179,6 +179,8 @@ namespace Slyvina {
 					for (auto u : UI_DataFields) { u.second->Caption = "--"; }
 					if (__CurrentJCRFile.size()) {
 						if (Suffixed(ff, "/")) {
+							UI_DataEntry->Caption = ff;
+							UI_DataType->Caption = "Directory";
 						} else {
 							auto be{ __CurrentJCR->Entries() };
 							auto e{ __CurrentJCR->Entry(ff) };
