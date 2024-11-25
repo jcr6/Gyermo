@@ -102,6 +102,10 @@ namespace Slyvina {
 					UI_Resource->Caption = "* File System *";
 					UI_Directory->Caption = __CurrentPath;
 					UI_BlckGroup->Visible = false;
+					UI_DataOther->Visible = false;
+					UI_DataOtherLabel->Visible = false;
+					UI_DataAlias->Visible = false;
+					UI_DataAliasLabel->Visible = false;
 				}
 				UI_FileList->CBAction(UI_FileList, j19action::Select);
 			}
