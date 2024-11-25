@@ -116,7 +116,7 @@ namespace Slyvina {
 					return;
 				}
 				if (IsDir(Path)) {
-					__CurrentPath = Path;
+					__CurrentPath = ChReplace(Path,'\\','/');
 					Renew();
 				} else if (IsFile(Path)) {
 					if (_JT_Dir::Recognize(Path) != "NONE") Renew(Path, "");					
