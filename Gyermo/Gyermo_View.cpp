@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.25 I
+// Version: 24.11.26
 // End License
 
 #include <Slyvina.hpp>
@@ -165,6 +165,9 @@ namespace Slyvina {
 				}
 				if (g->DrawY() + g->H() > ScreenHeight() - 5) {
 					g->H(g->H() - 1); QCol->Doing("Done", "View Gadget Height Correction!");
+				}
+				if (TQSE::MouseWheelY() != 0 && TQSE::MouseX() > g->DrawX() && TQSE::MouseY() > g->DrawY() && TQSE::MouseX() < g->DrawX() + g->W() && TQSE::MouseY() < g->DrawY() + g->H()) {
+					g->SetScrollY(g, g->ScrollY - TQSE::MouseWheelY());
 				}
 			}
 
@@ -330,7 +333,7 @@ namespace Slyvina {
 				auto Size{ JD ? E->RealSize() : (int)FileSize(entry) };
 				auto Ext{ ExtractExt(entry) };
 				if ((!JD) && _JT_Dir::Recognize(entry) != "NONE") {
-					QCol->Doing("View","File recognized as JCR6 compatible");
+					QCol->Doing("View", "File recognized as JCR6 compatible");
 					ViewCLS();
 					cr = 0; cr = 180; cb = 255;
 					ViewWriteLn("Recognized by JCR6 as: " + _JT_Dir::Recognize(entry));
@@ -347,7 +350,7 @@ namespace Slyvina {
 					ViewColor(ECol::Yellow); ViewWrite("Code: ");
 					ViewColor(ECol::BrightCyan); ViewWrite(KittyView->Language + "\n\n");
 					QCol->Doing("Kitty", KittyView->Language);
-					KittyView->Show(JD ? JD->GetString(entry) : FLoadString(entry),true);
+					KittyView->Show(JD ? JD->GetString(entry) : FLoadString(entry), true);
 					UI_ViewText->Visible = true;
 					UI_ViewAudio->Visible = false;
 					UI_ViewPicture->Visible = false;
@@ -357,10 +360,10 @@ namespace Slyvina {
 					auto img{ JD ? LoadImage(JD,entry) : LoadImage(entry) };
 					UI_ViewPictureLabel->Caption = _PicFormats[Lower(Ext)] + "  " + (img ? TrSPrintF("%dx%d", img->Width(), img->Height()) : " LOADING FAILED!");
 					UI_ViewPictureImage->Image(img);
-					
+
 					UI_ViewText->Visible = false;
 					UI_ViewAudio->Visible = false;
-					UI_ViewPicture->Visible = true;					
+					UI_ViewPicture->Visible = true;
 					return;
 				}
 				if (_AudioFormats.count(Lower(Ext))) {
@@ -373,13 +376,20 @@ namespace Slyvina {
 					return;
 				}
 				// If nothing else works then do this.
-				auto bnk{ GetB(JD, entry) };
-				if (IsBinary(bnk)) {
-					QCol->Doing("Hex", entry);;
-					ViewHex(bnk);
+
+				if (Size >= 500000000) {
+					ViewCLS();
+					ViewColor(ECol::Red);
+					ViewWriteLn("File too big to view properly");
 				} else {
-					QCol->Doing("Plain Text", entry);
-					ViewPlainText(bnk);
+					auto bnk{ GetB(JD, entry) };
+					if (IsBinary(bnk)) {
+						QCol->Doing("Hex", entry);;
+						ViewHex(bnk);
+					} else {
+						QCol->Doing("Plain Text", entry);
+						ViewPlainText(bnk);
+					}
 				}
 				UI_ViewText->Visible = true;
 				UI_ViewAudio->Visible = false;
