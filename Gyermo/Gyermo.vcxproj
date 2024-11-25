@@ -262,9 +262,6 @@
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\SDL2_mixer.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\zlib1.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\Libs\JCR6\3rdParty\zlib\zlib.lib" />
