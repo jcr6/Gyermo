@@ -159,6 +159,28 @@
     <ClCompile Include="..\..\..\Libs\June19\src\june19_scrollbar.cpp" />
     <ClCompile Include="..\..\..\Libs\June19\src\june19_tabber.cpp" />
     <ClCompile Include="..\..\..\Libs\June19\src\june19_textfield.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighBASIC.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighBlitzBasic.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighBlitzMax.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighBrainfuck.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighC.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighCobra.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighCS.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighGo.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighHTML.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighINI.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighJava.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighJavaScript.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighNeil.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighNIL.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighPascal.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighPython.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighSASKIA.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighScyndi.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighVisualBasic.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighWhiteSpace.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighXML.cpp" />
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\Kitty_High.cpp" />
     <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSA.cpp" />
     <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSE.cpp" />
     <ClCompile Include="..\..\..\Libs\TQSL\Source\TQSG.cpp" />
@@ -181,13 +203,18 @@
     <ClCompile Include="Gyermo_GUI.cpp" />
     <ClCompile Include="Gyermo_Main.cpp" />
     <ClCompile Include="Gyermo_ReadJCR.cpp" />
+    <ClCompile Include="Gyermo_View.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Libs\Kitty\Headers\High_Headers.hpp" />
+    <ClInclude Include="..\..\..\Libs\Kitty\Headers\Kitty_High.hpp" />
     <ClInclude Include="Gyermo_Assets.hpp" />
     <ClInclude Include="Gyermo_Colors.hpp" />
     <ClInclude Include="Gyermo_Config.hpp" />
     <ClInclude Include="Gyermo_GUI.hpp" />
     <ClInclude Include="Gyermo_ReadJCR.hpp" />
+    <ClInclude Include="Gyermo_View.hpp" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libFLAC-8.dll">
@@ -252,6 +279,14 @@
       <FileType>Document</FileType>
     </CopyFileToFolders>
     <None Include="Gyermo_Jalondi.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Gyermo.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon2.ico" />
+    <Image Include="JCR.ico" />
+    <Image Include="JCR6.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

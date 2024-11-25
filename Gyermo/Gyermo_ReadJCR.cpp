@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.25 I
+// Version: 24.11.25 III
 // End License
 
 #include "Gyermo_ReadJCR.hpp"
@@ -31,8 +31,11 @@
 #include <SlyvQCol.hpp>
 #include <SlyvDir.hpp>
 #include <TQSE.hpp>
+#include <Kitty_High.hpp>
+#include "Gyermo_View.hpp"
 using namespace Slyvina::TQSE;
 using namespace Slyvina::Units;
+using namespace Slyvina::Kitty;
 using namespace Slyvina::June19;
 
 namespace Slyvina { 
@@ -141,6 +144,12 @@ namespace Slyvina {
 					auto R{ _JT_Dir::Recognize(f) };
 					if (R != "NONE") return R == "JCR6" ? "JCR6 resource" : R + " (Readable by JCR6)";
 				}
+				//for (auto kl : _KittyHigh::Langs) QCol->Doing("Kitty", kl.first); // Debug
+				auto e{ Lower(ExtractExt(f)) };
+				if (_KittyHigh::Langs.count("WF:" + StripDir(f))) return _KittyHigh::Langs["WF:" + f]->Language;
+				if (_KittyHigh::Langs.count(e)) return _KittyHigh::Langs[e]->Language;
+				if (PicFormat(f).size()) return PicFormat(f);
+				if (AudioFormat(f).size()) return AudioFormat(f);
 				return "File";
 			}
 
@@ -181,6 +190,10 @@ namespace Slyvina {
 						if (Suffixed(ff, "/")) {
 							UI_DataEntry->Caption = ff;
 							UI_DataType->Caption = "Directory";
+							UI_ViewEntry->Caption = "Directories cannot be viewed like this!";
+							UI_ViewAudio->Visible = false;
+							UI_ViewText->Visible = false;
+							UI_ViewAudio->Visible = false;
 						} else {
 							auto be{ __CurrentJCR->Entries() };
 							auto e{ __CurrentJCR->Entry(ff) };
@@ -206,13 +219,15 @@ namespace Slyvina {
 							}
 							UI_DataAlias->Visible = UI_DataAlias->NumItems() > 0;
 							UI_DataAliasLabel->Visible = UI_DataAlias->Visible;
+							UI_ViewEntry->Caption = e->Name();
+							ViewEntry(__CurrentJCR, e->Name());
 							if (e->Block()) {
 								UI_DataFields["%__CSize"]->Caption = "N/A";
 								UI_DataRatio->Caption = "N/A";
 								UI_BlckGroup->Visible = true;
 								//for (auto k : __CurrentJCR->Blocks) QCol->Doing("Block:", k.first, TrSPrintF("\t%d\n", k.second->ID)); // debug
 								auto b{ __CurrentJCR->Blocks[std::to_string(e->Block()) + ":" + e->MainFile] };
-								UI_BlckEntry->Caption = e->Name();
+								UI_BlckEntry->Caption = e->Name();								
 								UI_BlckID->Caption = std::to_string(e->Block());
 								UI_BlckEntries->ClearItems();
 								for (auto eb : *be) if (eb->Block() == e->Block() && eb->MainFile == e->MainFile) UI_BlckEntries->AddItem(eb->Name());
@@ -230,10 +245,17 @@ namespace Slyvina {
 					} else {
 						auto fsize = FileSize(ff);
 						UI_DataEntry->Caption = ff;
+						UI_ViewEntry->Caption = Suffixed(ff,"/")? "Directories cannot be viewed like this!":ff;
 						UI_DataSize->Caption = Suffixed(ff, "/") ? "N/A" : (fsize < 10000 ? TrSPrintF("%d bytes", (int)fsize) : (fsize < 10000000 ? TrSPrintF("%d KB", fsize / 1000) : TrSPrintF("%d MB", fsize / 1000000)));
 						UI_DataType->Caption = GRJType(ff);
 						UI_BlckGroup->Visible = false;
+						UI_ViewAudio->Visible = false;
+						UI_ViewText->Visible = false;
+						UI_ViewAudio->Visible = false;
+						if (!Suffixed(ff,"/")) ViewEntry(nullptr, ff);
 					}
+				default:
+					break;
 				}
 			}
 		}

@@ -1,7 +1,7 @@
 // License:
 // 
 // Gyermo
-// Main
+// View Manager (header)
 // 
 // 
 // 
@@ -24,39 +24,34 @@
 // 
 // Version: 24.11.25 I
 // End License
-#include <SDL_main.h>
-#include <SlyvQCol.hpp>
-#include <SlyvString.hpp>
-#include <SlyvStream.hpp>
-#include <JCR6_JQL.hpp>
-#include <JCR6_QuakePAK.hpp>
-#include <JCR6_RealDir.hpp>
-#include <JCR6_WAD.hpp>
-#include <JCR6_zlib.hpp>
-#include <High_Headers.hpp>
-#include "Gyermo_GUI.hpp"
-#include "Gyermo_Assets.hpp"
-#include "Gyermo_ReadJCR.hpp"
+#pragma once
+#include <string>
 
-using namespace Slyvina;
-using namespace Slyvina::Units;
-using namespace Slyvina::JCR6;
-using namespace Slyvina::JCR6::Gyermo;
+#include <june19_core.hpp>
+#include "Gyermo_Colors.hpp"
 
+namespace Slyvina {
+	namespace JCR6 {
+		namespace Gyermo {
 
-int main(int argc, char** args) {
-	QCol->LMagenta("Gyermo\n");
-	QCol->Doing("Coded by", "Jeroen P. Broks");
-	QCol->Yellow("(c) 2024-" + Right(__DATE__, 4) + ", Jeroen P. Broks\n\n");
-	auto startres{ argc >= 2 ? String(args[1]) : CurrentDir() };
-	InitJQL();
-	InitQuake();
-	InitWAD();
-	init_zlib();
-	Kitty::KittyHigh_ALL();
-	JCR6_InitRealDir();
-	Asset_Init(args[0]);
-	UI_Init(); Renew(startres);
-	UI_Run();
-	UI_Done();
+			enum class ViewType { Text, Code, Audio, Picture, Binary };
+
+			void ViewCLS();
+			void ViewInit(Slyvina::June19::j19gadget* mammie);
+			void ViewWrite(std::string a);
+			inline void ViewWriteLn(std::string a) { ViewWrite(a + "\n"); }
+			bool IsBinary(Units::Bank B);
+
+			void ViewPlainText(Units::Bank B);
+			void ViewColor(ECol c);
+
+			void ViewEntry(JCR6::JT_Dir JD, std::string entry);
+
+			void ViewAudioCallBack(June19::j19gadget*, June19::j19action);
+
+			String PicFormat(String f);
+			String AudioFormat(String f);
+
+		}
+	}
 }

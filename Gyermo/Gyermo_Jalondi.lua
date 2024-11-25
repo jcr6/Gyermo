@@ -22,7 +22,7 @@
 -- 	Please note that some references to data like pictures or audio, do not automatically
 -- 	fall under this licenses. Mostly this is noted in the respective files.
 -- 
--- Version: 24.11.24
+-- Version: 24.11.25
 -- End License
 Jalondi.Doing("Scripting","Jalondi")
 Jalondi.Doing("Platform",Jalondi.Platform)
@@ -36,5 +36,6 @@ else
 end
 
 Jalondi.Add(BaseDir.."/Fonts/DosFont/DosFont.jfbf","Fonts/DOS.jfbf","zlib","","")
+Jalondi.Alias("Fonts/DOS.jfbf/124.png","Fonts/DOS.jfbf/118.108.png")
 Jalondi.Add("Assets","","zlib")
 Jalondi.Start("../Exe/"..Jalondi.Platform.."/Gyermo.jcr")

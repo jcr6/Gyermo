@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.25
+// Version: 24.11.25 II
 // End License
 #include <map>
 #include <june19.hpp>
@@ -31,6 +31,7 @@
 #include "Gyermo_Assets.hpp"
 #include "Gyermo_Config.hpp"
 #include "Gyermo_ReadJCR.hpp"
+#include "Gyermo_View.hpp"
 
 using namespace Slyvina::TQSG;
 using namespace Slyvina::TQSE;
@@ -61,7 +62,10 @@ namespace Slyvina {
 				* UI_TabData{ nullptr },
 				* UI_TabBlock{ nullptr },
 				* UI_BlckNoBlock{ nullptr },
-				* UI_TabView{ nullptr };
+				* UI_TabView{ nullptr },
+				* UI_AudioPlay{ nullptr },
+				* UI_AudioLoop{ nullptr },
+				* UI_AudioStop{ nullptr };
 			j19gadget
 				* UI_Right{ nullptr },
 				* UI_Resource{ nullptr },
@@ -83,7 +87,13 @@ namespace Slyvina {
 				* UI_BlckEntries{ nullptr },
 				* UI_BlckEntryOffset{ nullptr },
 				* UI_BlckRatio{ nullptr },
-				* UI_BlckOther{ nullptr };
+				* UI_BlckOther{ nullptr },
+				* UI_ViewEntry{ nullptr },
+				* UI_ViewText{ nullptr },
+				* UI_ViewAudio{ nullptr },
+				* UI_ViewPicture{ nullptr },
+				* UI_ViewPictureImage{ nullptr },
+				* UI_ViewPictureLabel{ nullptr };
 			static UniqueArray<j19gadget*> UI_Tabs{};
 
 			static void DrawRight(j19gadget*, j19action) {
@@ -149,7 +159,7 @@ namespace Slyvina {
 				ColorGadget(UI_Resource, "FIELD", "BrightBlue", "BrightBlue");
 				ColorGadget(UI_Directory, "FIELD", "BrightBlue", "BrightBlue");
 				UI_Left = CreateGroup(0, HeadHeight * 3, UI_Work->W() / 2, UI_Work->H() - (HeadHeight * 3), UI_Work);
-				UI_Right = CreateGroup(UI_Work->W() / 2, HeadHeight * 3, UI_Work->W() / 2, UI_Work->H() - (HeadHeight * 3), UI_Work);
+				UI_Right = CreateGroup(UI_Work->W() / 2, HeadHeight * 3, UI_Work->W() / 2, UI_Work->H() - (HeadHeight * 4), UI_Work);
 				UI_FileList = CreateListBox(5, 5, UI_Left->W() - 35, UI_Left->H() - 100, UI_Left);
 				UI_FileList->CBAction = Act_FileList;
 				ColorGadget(UI_FileList, "FileList", "White", "BrightBlue");
@@ -230,7 +240,30 @@ namespace Slyvina {
 				ColorGadget(CreateLabel("Other Data:", 2, y, DataTab, HeadHeight, UI_BlckGroup), "Tab_Block");
 				UI_BlckOther = CreateListBox(DataTab, y, CPan->W() - (DataTab + 200), HeadHeight * 4, UI_BlckGroup);
 				ColorGadget(UI_BlckOther, "Other");
-
+				CPan = UI_TabPanels["View"];
+				ColorGadget(CreateLabel("Entry:", 2, 2, DataTab, HeadHeight, CPan), "Tab_View");
+				UI_ViewEntry = CreateLabel("--", DataTab, 2, DataTab, HeadHeight, CPan);
+				ColorGadget(UI_ViewEntry, "Fld_View", "White", "Black");
+				UI_ViewText = CreatePanel(0, HeadHeight, CPan->W(), CPan->H() - HeadHeight, CPan);
+				ViewInit(UI_ViewText);
+				UI_ViewPicture = CreatePanel(0, HeadHeight, CPan->W(), CPan->H() - HeadHeight, CPan);
+				UI_ViewPictureImage = CreatePicture(0, 0, CPan->W(), CPan->H() - 20, UI_ViewPicture,Pic_Fit);
+				UI_ViewPictureLabel = CreateLabel("--", 0, 0, CPan->W(), HeadHeight, UI_ViewPicture);
+				ColorGadget(UI_ViewPictureLabel, "Tab_View");
+				UI_ViewPictureLabel->BA = 25;
+				UI_ViewAudio = CreatePanel(0, HeadHeight, CPan->W(), CPan->H() - HeadHeight, CPan);
+				UI_AudioPlay = CreateButton("Play", 25, 25, UI_ViewAudio);
+				UI_AudioLoop = CreateButton("Loop", 25, 50, UI_ViewAudio);
+				UI_AudioStop = CreateButton("Stop", 25, 75, UI_ViewAudio);
+				UI_AudioPlay->SetForeground(0, 255, 0, 255);
+				UI_AudioPlay->SetBackground(0, 25, 0, 255);
+				UI_AudioLoop->SetForeground(255, 180, 0, 255);
+				UI_AudioLoop->SetBackground(25, 18, 0, 255);
+				UI_AudioStop->SetForeground(255, 0, 0, 255);
+				UI_AudioStop->SetBackground(25, 0, 0, 255);
+				UI_AudioPlay->CBAction = ViewAudioCallBack;
+				UI_AudioLoop->CBAction = ViewAudioCallBack;
+				UI_AudioStop->CBAction = ViewAudioCallBack;
 			}
 
 

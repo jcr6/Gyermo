@@ -40,6 +40,15 @@
     <Filter Include="Source Files\Slyvina\June19">
       <UniqueIdentifier>{b5e4accf-4e55-44cd-b29f-5db55f5c6902}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Slyvina\Kitty">
+      <UniqueIdentifier>{b96ad857-97a1-43b5-a921-61fb7df8de7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Slyvina">
+      <UniqueIdentifier>{362a90fd-291a-431c-8a15-e3d7fcce430d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Slyvina\Kitty">
+      <UniqueIdentifier>{775c9e1a-3ce4-4176-870c-90a972624e86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gyermo_Main.cpp">
@@ -162,6 +171,75 @@
     <ClCompile Include="Gyermo_ReadJCR.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\Kitty_High.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighBASIC.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighBlitzBasic.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighBlitzMax.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighBrainfuck.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighC.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighCobra.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighCS.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighGo.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighHTML.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighINI.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighJava.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighJavaScript.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighNeil.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighNIL.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighPascal.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighPython.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighSASKIA.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighScyndi.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighVisualBasic.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighWhiteSpace.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Libs\Kitty\Source\KittyHighXML.cpp">
+      <Filter>Source Files\Slyvina\Kitty</Filter>
+    </ClCompile>
+    <ClCompile Include="Gyermo_View.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gyermo_Colors.hpp">
@@ -177,6 +255,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Gyermo_ReadJCR.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Libs\Kitty\Headers\High_Headers.hpp">
+      <Filter>Header Files\Slyvina\Kitty</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Libs\Kitty\Headers\Kitty_High.hpp">
+      <Filter>Header Files\Slyvina\Kitty</Filter>
+    </ClInclude>
+    <ClInclude Include="Gyermo_View.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -257,5 +347,21 @@
     <Library Include="..\..\..\Libs\JCR6\3rdParty\zlib\zlib.lib">
       <Filter>Source Files\External\zlib</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Gyermo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="JCR.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="JCR6.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="icon2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.25
+// Version: 24.11.25 II
 // End License
 #pragma once
 #include <Slyvina.hpp>
@@ -56,7 +56,13 @@ namespace Slyvina {
 				* UI_BlckEntries,
 				* UI_BlckEntryOffset,
 				* UI_BlckRatio,
-				* UI_BlckOther;
+				* UI_BlckOther,
+				* UI_ViewEntry,
+				* UI_ViewText,
+				* UI_ViewAudio,
+				* UI_ViewPicture,
+				* UI_ViewPictureImage,
+				* UI_ViewPictureLabel;
 
 
 			extern std::map<String, June19::j19gadget*>
