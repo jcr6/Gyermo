@@ -96,6 +96,7 @@ namespace Slyvina {
 				} else {
 					auto dirs{ FileList(__CurrentPath,DirWant::Directories) };
 					auto files{ FileList(__CurrentPath) };
+					UI_DataResourceType->Caption = "File system";
 					for (auto d : *dirs) UI_FileList->AddItem(d+"/");
 					for (auto f : *files) UI_FileList->AddItem(f);
 					UI_Resource->Caption = "* File System *";
