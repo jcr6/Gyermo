@@ -191,6 +191,7 @@ namespace Slyvina {
 							UI_DataOther->Visible = UI_DataOther->NumItems() > 0;
 							UI_DataOtherLabel->Visible = UI_DataOther->Visible;
 							UI_DataMain->Caption = e->MainFile;
+							UI_DataType->Caption = GRJType(ff);
 							UI_DataAlias->ClearItems();
 							for (auto ae : *be) {
 								if (
