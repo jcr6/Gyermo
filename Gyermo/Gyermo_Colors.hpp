@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.23
+// Version: 24.11.26
 // End License
 #pragma once
 #include <Slyvina.hpp>
@@ -59,6 +59,7 @@ namespace Slyvina {
 				{ECol::Blue,{0,0,170}},
 				{ECol::Green,{0,170,0}},
 				{ECol::Cyan,{0,170,170}},
+				{ECol::Magenta,{170,0,170}},
 				{ECol::Red,{170,0,0}},
 				{ECol::Brown,{170,85,0}},
 				{ECol::BrightGrey,{170,170,170}},
