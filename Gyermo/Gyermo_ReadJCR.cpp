@@ -193,6 +193,7 @@ namespace Slyvina {
 							UI_DataMain->Caption = e->MainFile;
 							UI_DataType->Caption = GRJType(ff);
 							UI_DataAlias->ClearItems();
+							UI_DataRatio->Caption = (e->Block() != 0 || e->Storage() == "Store") ? "N/A" : TrSPrintF("%5.1f%%", ((double)e->CompressedSize() / (double)e->RealSize()) * 100.0);
 							for (auto ae : *be) {
 								if (
 									ae->Name() != e->Name() &&
