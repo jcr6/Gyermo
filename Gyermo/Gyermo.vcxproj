@@ -180,12 +180,14 @@
     <ClCompile Include="Gyermo_Config.cpp" />
     <ClCompile Include="Gyermo_GUI.cpp" />
     <ClCompile Include="Gyermo_Main.cpp" />
+    <ClCompile Include="Gyermo_ReadJCR.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gyermo_Assets.hpp" />
     <ClInclude Include="Gyermo_Colors.hpp" />
     <ClInclude Include="Gyermo_Config.hpp" />
     <ClInclude Include="Gyermo_GUI.hpp" />
+    <ClInclude Include="Gyermo_ReadJCR.hpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\..\..\Libs\TQSL\SDL2\libFLAC-8.dll">
