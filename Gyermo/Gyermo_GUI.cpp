@@ -70,7 +70,8 @@ namespace Slyvina {
 				* UI_TabView{ nullptr },
 				* UI_AudioPlay{ nullptr },
 				* UI_AudioLoop{ nullptr },
-				* UI_AudioStop{ nullptr };
+				* UI_AudioStop{ nullptr },
+				* UI_NavUsedClear{ nullptr },
 			j19gadget
 				* UI_Right{ nullptr },
 				* UI_Resource{ nullptr },
@@ -152,6 +153,14 @@ namespace Slyvina {
 				Renew(gt);
 			}
 
+			static void NavUsedClearDraw(j19gadget* b, j19action) {
+				auto mammie{ b->GetParent() };
+				b->X(0);
+				b->Y(mammie->H() - b->H());
+				b->Enabled = UI_NavUsed->NumItems() > 0;
+				UI_NavUsed->H((mammie->H() - UI_NavUsed->Y()) - b->H());
+				if (mammie->DrawY() + mammie->H() > ScreenHeight() - 3) mammie->H(mammie->H() - 1);
+			}
 #define DataTab 150
 #define NavWidth 300
 #define DataField(gadget,Caption) ColorGadget(CreateLabel(Caption,2,y,DataTab,HeadHeight,CPan),"Tab_Data"); gadget=CreateLabel("--",DataTab,y,CPan->W(),HeadHeight,CPan); ColorGadget(gadget,"FLD_DATA","Yellow","Black"); y+=HeadHeight

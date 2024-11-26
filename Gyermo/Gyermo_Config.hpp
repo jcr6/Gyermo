@@ -34,6 +34,11 @@ namespace Slyvina {
 	namespace JCR6 {
 		namespace Gyermo {
 			std::string ConfigFile();
+			void ClearUsed(June19::j19gadget* lb, June19::j19action);
+			inline void ClearUsed(June19::j19gadget* lb) { ClearUsed(lb, June19::j19action::Unknown); }
+			inline void ClearUsed() { ClearUsed(nullptr, June19::j19action::Unknown); }
+			void UpdateUsed(June19::j19gadget* up);
+			void AddUsed(June19::j19gadget* up, std::string res);
 			TCol GetCol(String ColStr);
 			void ColorGadget(June19::j19gadget* g,String Tag,String DefaultColorF="White",String DefaultColorB="DarkGray");
 			void ColorGadgetReverse(June19::j19gadget* g, String Tag, String DefaultColorF = "White", String DefaultColorB = "DarkGray");

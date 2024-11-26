@@ -24,10 +24,13 @@
 // 
 // Version: 24.11.24 I
 // End License
+
 #include "Gyermo_Config.hpp"
 #include <SlyvDirry.hpp>
 #include <SlyvGINIE.hpp>
 #include <SlyvQCol.hpp>
+#include <june19_core.hpp>
+
 using namespace Slyvina::Units;
 namespace Slyvina {
 	namespace JCR6 {
@@ -41,8 +44,37 @@ namespace Slyvina {
 				}
 			}
 
+			void ClearUsed(June19::j19gadget* lb,June19::j19action) {
+				_Config->Kill("Used");
+				if (lb) lb->ClearItems();
+			}
+
 			std::string ConfigFile() {
 				return Dirry("$AppSupport$/Gyermo.ini");
+			}
+
+			void UpdateUsed(June19::j19gadget* up) {
+				auto nl{ _Config->List("Used","Used") };
+				up->ClearItems();
+				for (int p = (int)nl->size()-1; p >= 0; p--) { 
+					auto& sr{ (*nl)[p] };
+					if (_Config->HasValue("Used", sr)) up->AddItem((*nl)[p]); 
+				}
+			}
+
+			void AddUsed(June19::j19gadget* up, std::string res) {
+				auto lu{ _Config->List("Used","Used") };
+				auto sr{ StripDir(res) };
+				_Config->Value("Used",sr, res);
+				if (lu->size() && (*lu)[lu->size() - 1] == res) return; 
+				auto nl{ NewVecString() };
+				for (auto o : *lu) {
+					if (o != sr) nl->push_back(o);
+				}
+				nl->push_back(sr);
+				if (nl->size() > std::max(15, _Config->NewValue("Used", "*Max", 30))) nl->erase(nl->begin());
+				_Config->ReplaceList("Used", "Used", nl);;
+				UpdateUsed(up);
 			}
 
 			TCol GetCol(String ColStr) {

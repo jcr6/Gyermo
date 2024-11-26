@@ -36,6 +36,7 @@ namespace Slyvina {
 			void UI_Done();
 
 			extern June19::j19gadget
+				* UI_NavUsed,
 				* UI_FileList,
 				* UI_Resource,
 				* UI_Directory,
