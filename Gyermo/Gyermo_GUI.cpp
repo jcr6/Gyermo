@@ -76,7 +76,7 @@ namespace Slyvina {
 				* UI_NavFavRemove{ nullptr };
 			j19gadget
 				* UI_NavUsed{ nullptr },
-				* UI_NavFav{nullptr},
+				* UI_NavFav{ nullptr },
 				* UI_Right{ nullptr },
 				* UI_Resource{ nullptr },
 				* UI_Directory{ nullptr },
@@ -103,7 +103,10 @@ namespace Slyvina {
 				* UI_ViewAudio{ nullptr },
 				* UI_ViewPicture{ nullptr },
 				* UI_ViewPictureImage{ nullptr },
-				* UI_ViewPictureLabel{ nullptr };
+				* UI_ViewPictureLabel{ nullptr },
+				* UI_Extract{ nullptr },
+				* UI_ExtractAll{ nullptr };
+
 			static UniqueArray<j19gadget*> UI_Tabs{};
 
 			static void DrawRight(j19gadget*, j19action) {
@@ -181,6 +184,12 @@ namespace Slyvina {
 				if (CurrentJCRFile() == "") return;
 				CFGV("Favorites", StripDir(CurrentJCRFile()), CurrentJCRFile());
 				UpdateFavorites(UI_NavFav);
+			}
+
+			static void Draw_Extract(j19gadget* g, j19action) {
+				UI_ExtractAll->X(UI_Extract->W() + 5);
+				g->Y(UI_FileList->Y() + UI_FileList->H() + 2);
+				g->Enabled = g->Caption=="Extract" ? CurrentJCRFile().size() && UI_FileList->ItemText().size() && (!Suffixed(UI_FileList->ItemText(),"/")) : CurrentJCRFile().size();
 			}
 
 #define DataTab 150
@@ -264,6 +273,14 @@ namespace Slyvina {
 				UI_FileList = CreateListBox(5, 5, UI_Left->W() - 35, UI_Left->H() - 100, UI_Left);
 				UI_FileList->CBAction = Act_FileList;
 				ColorGadget(UI_FileList, "FileList", "White", "BrightBlue");
+				UI_Extract = CreateButton("Extract", 0, 0, UI_Left);
+				UI_ExtractAll = CreateButton("Extract All", 0, 0, UI_Left);
+				ColorGadget(UI_Extract, "Extract", "Yellow", "Brown");
+				ColorGadget(UI_ExtractAll, "Extract", "Yellow", "Brown");
+				UI_Extract->CBDraw = Draw_Extract;
+				UI_ExtractAll->CBDraw = Draw_Extract;
+
+				// Right Panel
 				UI_TabData = CreateButton("Data", 0, 0, UI_Right);
 				UI_TabData->Enabled = true;
 				ColorGadgetReverse(UI_TabData, "Tab_Data", "255,180,0", "25,18,0");

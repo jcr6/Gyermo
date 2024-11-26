@@ -237,6 +237,7 @@ namespace Slyvina {
 									ae->Block() == e->Block()
 									) UI_DataAlias->AddItem(ae->Name());
 							}
+							if (!e->Block()) UI_DataFields["%__Block"]->Caption = "None";
 							UI_DataAlias->Visible = UI_DataAlias->NumItems() > 0;
 							UI_DataAliasLabel->Visible = UI_DataAlias->Visible;
 							UI_ViewEntry->Caption = e->Name();
