@@ -62,7 +62,7 @@ namespace Slyvina {
 				* UI_Work{ nullptr },
 				* UI_Background{ nullptr },
 				* UI_Header{ nullptr },
-				* UI_Nav{nullptr},
+				* UI_Nav{ nullptr },
 				* UI_Left{ nullptr },
 				* UI_TabData{ nullptr },
 				* UI_TabBlock{ nullptr },
@@ -72,7 +72,11 @@ namespace Slyvina {
 				* UI_AudioLoop{ nullptr },
 				* UI_AudioStop{ nullptr },
 				* UI_NavUsedClear{ nullptr },
+				* UI_NavFavAdd{ nullptr },
+				* UI_NavFavRemove{ nullptr };
 			j19gadget
+				* UI_NavUsed{ nullptr },
+				* UI_NavFav{nullptr},
 				* UI_Right{ nullptr },
 				* UI_Resource{ nullptr },
 				* UI_Directory{ nullptr },
@@ -161,6 +165,18 @@ namespace Slyvina {
 				UI_NavUsed->H((mammie->H() - UI_NavUsed->Y()) - b->H());
 				if (mammie->DrawY() + mammie->H() > ScreenHeight() - 3) mammie->H(mammie->H() - 1);
 			}
+
+			static void DrawFav(j19gadget* lb, j19action) {
+				auto mammie{ lb->GetParent() };
+				if (mammie->DrawY() + mammie->H() > ScreenHeight() - 5) mammie->H(mammie->H() - 1);
+				UI_NavFavAdd->Y(mammie->H() - UI_NavFavAdd->H());
+				UI_NavFavRemove->Y(UI_NavFavAdd->Y());
+				UI_NavFavRemove->X(UI_NavFavAdd->X()+UI_NavFavAdd->W() + 2);
+				lb->H(UI_NavFavAdd->Y());
+				UI_NavFavAdd->Enabled = UI_Resource->Caption[0] != '*';
+				UI_NavFavRemove->Enabled = lb->SelectedItem() >= 0;
+			}
+
 #define DataTab 150
 #define NavWidth 300
 #define DataField(gadget,Caption) ColorGadget(CreateLabel(Caption,2,y,DataTab,HeadHeight,CPan),"Tab_Data"); gadget=CreateLabel("--",DataTab,y,CPan->W(),HeadHeight,CPan); ColorGadget(gadget,"FLD_DATA","Yellow","Black"); y+=HeadHeight
@@ -193,24 +209,42 @@ namespace Slyvina {
 				ColorGadget(UI_Resource, "FIELD", "BrightBlue", "BrightBlue");
 				ColorGadget(UI_Directory, "FIELD", "BrightBlue", "BrightBlue");
 
-				// Nav Panel
+				// Nav Panel - General
 				UI_Nav = CreateGroup(0, HeadHeight * 3, NavWidth, UI_Work->H() - (HeadHeight * 4), UI_Work);
 				UI_NavPanels["Volumes"] = CreateListBox(0, HeadHeight * UI_NavRadio.size(), UI_Nav->W(), UI_Nav->H()-(HeadHeight*UI_NavRadio.size()), UI_Nav);
 				for (auto uinp : UI_NavRadio) {
 					auto& uin{ uinp.first };
-					UI_NavRadio[uin] = CreateRadioButton(uin, 0, 0, UI_Nav->W(), HeadHeight, UI_Nav);
-					UI_NavPanels[uin] = UI_NavPanels[uin] ? UI_NavPanels[uin] : CreateGroup(0, 0, UI_Nav->W(), UI_Nav->H() - (HeadHeight * UI_NavRadio.size()), UI_Nav);
+					UI_NavRadio[uin] = CreateRadioButton(uin, 0, 0 , UI_Nav->W(), HeadHeight, UI_Nav);
+					UI_NavPanels[uin] = UI_NavPanels[uin] ? UI_NavPanels[uin] : CreateGroup(0, HeadHeight * UI_NavRadio.size(), UI_Nav->W(), UI_Nav->H() - (HeadHeight * UI_NavRadio.size()), UI_Nav);
 					UI_NavRadio[uin]->CBDraw = DrawNavRadio;
 				}
 				UI_NavRadio["Volumes"]->Y(0); UI_NavRadio["Volumes"]->checked = true;
 				UI_NavRadio["Used"]->Y(HeadHeight);
 				UI_NavRadio["Favorites"]->Y(HeadHeight * 2);
+				// Nav Panel - Volumes
 				ColorGadget(UI_NavPanels["Volumes"], "Nav_Volumes", "BrightBlue", "Blue");
 				QCol->Doing("Scanning", "Volumes");
 				auto V{ Volumes() };
 				UI_NavRadio["Volumes"]->ClearItems();
 				for (auto vol : *V) UI_NavPanels["Volumes"]->AddItem(vol.first);
 				UI_NavPanels["Volumes"]->CBAction = NavSelectVolume;
+				// Nav Panel - Used
+				UI_NavUsed = CreateListBox(0, 0, UI_NavPanels["Used"]->W(), 0, UI_NavPanels["Used"]);
+				UI_NavUsedClear = CreateButton("Clear", 0, 0, UI_NavPanels["Used"]);
+				UI_NavUsedClear->CBDraw = NavUsedClearDraw;
+				ColorGadget(UI_NavUsed, "Nav_Used", "BrightGreen", "Green");
+				ColorGadget(UI_NavUsedClear, "Clear", "Yellow", "Red");
+				UI_NavUsed->HData = "Used";
+				UpdateUsed(UI_NavUsed);
+				// Nav Panel - Favorites
+				UI_NavFav = CreateListBox(0, 0, UI_NavPanels["Used"]->W(), 0, UI_NavPanels["Favorites"]);
+				UI_NavFavAdd = CreateButton("+", 0, 0, UI_NavPanels["Favorites"]);
+				UI_NavFavRemove = CreateButton("-", 0, 0, UI_NavPanels["Favorites"]);
+				UI_NavFav->CBDraw = DrawFav;
+				ColorGadget(UI_NavFav, "FAV.LIST", "BrightMagenta", "Magenta");
+				ColorGadget(UI_NavFavAdd, "FAV.Add", "BrightGreen", "Green");
+				ColorGadget(UI_NavFavRemove, "FAV.Remove", "Pink", "Red");
+
 				// Left Panel
 				UI_Left = CreateGroup(NavWidth, HeadHeight * 3, (UI_Work->W() / 2)-NavWidth, UI_Work->H() - (HeadHeight * 3), UI_Work);
 				UI_Right = CreateGroup(UI_Work->W() / 2, HeadHeight * 3, UI_Work->W() / 2, UI_Work->H() - (HeadHeight * 4), UI_Work);
