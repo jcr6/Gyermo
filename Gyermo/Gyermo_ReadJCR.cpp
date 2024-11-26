@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.25 III
+// Version: 24.11.26
 // End License
 
 #include "Gyermo_ReadJCR.hpp"
@@ -114,11 +114,23 @@ namespace Slyvina {
 			}
 
 			void Renew(std::string Path) {
+				//while (Path.size() && Suffixed(Path, "/")) Path = Path.substr(0, Path.size() - 1);
 				if (__CurrentJCRFile.size()) {
 					Renew(__CurrentJCRFile, Path);
 					return;
 				}
-				if (IsDir(Path)) {
+#ifdef SlyvWindows
+				if (Path.size() == 3 && Path[1]==':' && (Path[2]=='/' || Path[2]=='\\')) {
+					__CurrentPath = ChReplace(Path, '\\', '/');
+					Renew();
+				}
+#else
+				if (Path = "/") {
+					__CurrentPath = "/";
+					Renew();
+				}
+#endif
+				else if (IsDir(Path)) {
 					__CurrentPath = ChReplace(Path,'\\','/');
 					Renew();
 				} else if (IsFile(Path)) {
