@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26 IV
+// Version: 24.11.26 V
 // End License
 
 #include <Slyvina.hpp>
@@ -39,6 +39,7 @@
 #include "Gyermo_View.hpp"
 #include "Gyermo_GUI.hpp"
 #include "Gyermo_Config.hpp"
+using namespace Slyvina::TQSG;
 using namespace Slyvina::TQSE;
 using namespace Slyvina::Units;
 using namespace Slyvina::Kitty;
@@ -317,6 +318,41 @@ namespace Slyvina {
 #endif
 				if (!tgt.size()) return;
 				Extract(src, tgt);
+			}
+
+			void ExtractAllButton(June19::j19gadget*, June19::j19action) {
+				if (!__CurrentJCR) return;
+				String tgt{ "" };
+#ifdef SlyvWindows
+				QCol->Doing("Asking", "Target for extract all");
+				tgt = ChReplace( RequestDir("Please tell me where to extract all files to"),'\\','/');
+#else
+				Notify("This feature is not (yet) available on " + Platform());
+#endif
+				if (!tgt.size()) { QCol->Red("User cancelled or platform issue\n"); return; }
+				if (!Yes("Please note!\nJCR6 is NOT to be compared with archive formats such as ZIP, RAR or 7z.\nIt has features that can act VERY funny when extracting all files\nMost notably the Alias feature may cause you a pain!\n\nDo you wish to continue")) return;
+				auto A{ __CurrentJCR->Entries() };
+				auto Cnt{ A->size() }, Num{ (size_t)0 };
+				auto BY{ (ScreenHeight() / 2) - 12 };
+				for (auto E : *A) {
+					Poll();
+					Cls();
+					SetColor(85, 85, 85);
+					Rect(0, BY, ScreenWidth(), 25);
+					SetColor(85, 85, 255);
+					Rect(0, BY, (int)(((double)(++Num) / Cnt) * (double)ScreenWidth()), 25);
+					SetColor(255, 255, 85);
+					j19gadget::GetDefaultFont()->Text("Extracting: " + E->Name(), ScreenWidth() / 2, ScreenHeight() / 2, Align::Center, Align::Center);
+					Flip();
+					auto tfile{ tgt + (Suffixed(tgt,"/") ? "" : "/") + E->Name() };
+					auto tdir{ ExtractDir(tfile) };
+					if (!IsDir(tdir)) {
+						QCol->Doing("Creating dir", tdir);
+						MakeDir(tdir);
+						if (!IsDir(tdir)) { Notify("Failed to create directory '" + tdir + "'.\nCannot extract " + tfile); continue; }
+					}
+					Extract(E->Name(), tfile);
+				}
 			}
 		}
 	} 
