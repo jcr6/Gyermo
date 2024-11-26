@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26 III
+// Version: 24.11.26 IV
 // End License
 #include <map>
 #include <june19.hpp>
@@ -243,6 +243,7 @@ namespace Slyvina {
 				UI_NavUsed->HData = "Used";
 				UpdateUsed(UI_NavUsed);
 				UI_NavUsed->CBAction = Act_UFP;
+				UI_NavUsedClear->CBAction = ClearUsed;
 				// Nav Panel - Favorites
 				UI_NavFav = CreateListBox(0, 0, UI_NavPanels["Used"]->W(), 0, UI_NavPanels["Favorites"]);
 				UI_NavFavAdd = CreateButton("+", 0, 0, UI_NavPanels["Favorites"]);

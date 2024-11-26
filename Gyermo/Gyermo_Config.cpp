@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26 II
+// Version: 24.11.26 III
 // End License
 
 #include <SlyvDirry.hpp>
@@ -47,7 +47,7 @@ namespace Slyvina {
 
 			void ClearUsed(June19::j19gadget* lb,June19::j19action) {
 				_Config->Kill("Used");
-				if (lb) lb->ClearItems();
+				if (UI_NavUsed) UI_NavUsed->ClearItems();
 			}
 
 			std::string ConfigFile() {
