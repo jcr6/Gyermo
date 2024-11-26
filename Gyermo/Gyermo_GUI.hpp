@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.25 II
+// Version: 24.11.26 I
 // End License
 #pragma once
 #include <Slyvina.hpp>
@@ -37,6 +37,7 @@ namespace Slyvina {
 
 			extern June19::j19gadget
 				* UI_NavUsed,
+				* UI_NavFav,
 				* UI_FileList,
 				* UI_Resource,
 				* UI_Directory,

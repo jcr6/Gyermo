@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.25
+// Version: 24.11.26 I
 // End License
 #pragma once
 #include <string>
@@ -40,6 +40,7 @@ namespace Slyvina{
 			std::string GRJType(std::string f);
 
 			void Act_FileList(June19::j19gadget*, June19::j19action);
+			void Act_UFP(June19::j19gadget* g, June19::j19action);
 		} 
 	} 
 }

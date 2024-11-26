@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26
+// Version: 24.11.26 II
 // End License
 
 #include "Gyermo_ReadJCR.hpp"
@@ -277,6 +277,11 @@ namespace Slyvina {
 				default:
 					break;
 				}
+			}
+			void Act_UFP(June19::j19gadget* g, June19::j19action) {
+				if (g->SelectedItem() < 0) return;
+				auto res{ CFGV(g->HData,g->ItemText()) };
+				res.size() ? Renew(res, "") : Notify("Apparently your request got me an empty record in the database!");
 			}
 		}
 	} 

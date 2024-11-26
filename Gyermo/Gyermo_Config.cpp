@@ -22,14 +22,15 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.24 I
+// Version: 24.11.26 II
 // End License
 
-#include "Gyermo_Config.hpp"
 #include <SlyvDirry.hpp>
 #include <SlyvGINIE.hpp>
 #include <SlyvQCol.hpp>
 #include <june19_core.hpp>
+#include "Gyermo_Config.hpp"
+#include "Gyermo_GUI.hpp"
 
 using namespace Slyvina::Units;
 namespace Slyvina {
@@ -62,6 +63,21 @@ namespace Slyvina {
 				}
 			}
 
+			void UpdateFavorites(June19::j19gadget* fp) {
+				auto fl{ _Config->Values("Favorites") };
+				fp->ClearItems();
+				for (auto ft : *fl) {
+					auto file{ _Config->Value("Favorites",ft) };
+					auto sfil{ StripDir(file) };					
+					if (!FileExists(file)) {
+						_Config->Kill("Favorites", ft,GINIE_Kill::Values);
+						QCol->Warn("Removed non-existent file '" + file + "' from the favorite list");
+					} else {
+						fp->AddItem(sfil);
+					}
+				}
+			}
+
 			void AddUsed(June19::j19gadget* up, std::string res) {
 				auto lu{ _Config->List("Used","Used") };
 				auto sr{ StripDir(res) };
@@ -75,6 +91,14 @@ namespace Slyvina {
 				if (nl->size() > std::max(15, _Config->NewValue("Used", "*Max", 30))) nl->erase(nl->begin());
 				_Config->ReplaceList("Used", "Used", nl);;
 				UpdateUsed(up);
+			}
+
+			String CFGV(std::string c, std::string v) {
+				return _Config->Value(c, v);
+			}
+
+			void CFGV(std::string c, std::string v, std::string newv) {
+				_Config->Value(c, v, newv);
 			}
 
 			TCol GetCol(String ColStr) {
@@ -116,6 +140,17 @@ namespace Slyvina {
 				g->FR = BG.R;
 				g->FG = BG.G;
 				g->FB = BG.B;
+			}
+
+			void RemoveFavorite(std::string f) {
+				auto victim{ StripDir(f) };
+				QCol->Doing("Removing", f, ""); QCol->Yellow(" from favorites\n");
+				_Config->Kill("Favorites",victim,GINIE_Kill::Values );
+				UpdateFavorites(UI_NavFav);
+			}
+
+			void RemoveFavorite(June19::j19gadget* g, June19::j19action) {
+				if (UI_NavFav->SelectedItem() >= 0 && UI_NavFav->ItemText().size()) RemoveFavorite(UI_NavFav->ItemText());
 			}
 			
 		}

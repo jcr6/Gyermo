@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26
+// Version: 24.11.26 III
 // End License
 
 #pragma once
@@ -38,10 +38,15 @@ namespace Slyvina {
 			inline void ClearUsed(June19::j19gadget* lb) { ClearUsed(lb, June19::j19action::Unknown); }
 			inline void ClearUsed() { ClearUsed(nullptr, June19::j19action::Unknown); }
 			void UpdateUsed(June19::j19gadget* up);
+			void UpdateFavorites(June19::j19gadget* fp);
 			void AddUsed(June19::j19gadget* up, std::string res);
+			String CFGV(std::string c, std::string v);
+			void CFGV(std::string c, std::string v,std::string newv);
 			TCol GetCol(String ColStr);
 			void ColorGadget(June19::j19gadget* g,String Tag,String DefaultColorF="White",String DefaultColorB="DarkGray");
 			void ColorGadgetReverse(June19::j19gadget* g, String Tag, String DefaultColorF = "White", String DefaultColorB = "DarkGray");
+			void RemoveFavorite(std::string f);
+			void RemoveFavorite(June19::j19gadget* g, June19::j19action);
 		}
 	}
 }

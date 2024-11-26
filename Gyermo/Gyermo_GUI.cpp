@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26
+// Version: 24.11.26 III
 // End License
 #include <map>
 #include <june19.hpp>
@@ -174,7 +174,13 @@ namespace Slyvina {
 				UI_NavFavRemove->X(UI_NavFavAdd->X()+UI_NavFavAdd->W() + 2);
 				lb->H(UI_NavFavAdd->Y());
 				UI_NavFavAdd->Enabled = UI_Resource->Caption[0] != '*';
-				UI_NavFavRemove->Enabled = lb->SelectedItem() >= 0;
+				UI_NavFavRemove->Enabled = lb->SelectedItem() >= 0;			
+			}
+
+			static void Act_AddFav(j19gadget*, j19action) {
+				if (CurrentJCRFile() == "") return;
+				CFGV("Favorites", StripDir(CurrentJCRFile()), CurrentJCRFile());
+				UpdateFavorites(UI_NavFav);
 			}
 
 #define DataTab 150
@@ -236,14 +242,20 @@ namespace Slyvina {
 				ColorGadget(UI_NavUsedClear, "Clear", "Yellow", "Red");
 				UI_NavUsed->HData = "Used";
 				UpdateUsed(UI_NavUsed);
+				UI_NavUsed->CBAction = Act_UFP;
 				// Nav Panel - Favorites
 				UI_NavFav = CreateListBox(0, 0, UI_NavPanels["Used"]->W(), 0, UI_NavPanels["Favorites"]);
 				UI_NavFavAdd = CreateButton("+", 0, 0, UI_NavPanels["Favorites"]);
 				UI_NavFavRemove = CreateButton("-", 0, 0, UI_NavPanels["Favorites"]);
 				UI_NavFav->CBDraw = DrawFav;
+				UI_NavFav->CBAction = Act_UFP;
+				UI_NavFav->HData = "Favorites";
 				ColorGadget(UI_NavFav, "FAV.LIST", "BrightMagenta", "Magenta");
 				ColorGadget(UI_NavFavAdd, "FAV.Add", "BrightGreen", "Green");
 				ColorGadget(UI_NavFavRemove, "FAV.Remove", "Pink", "Red");
+				UI_NavFavAdd->CBAction = Act_AddFav;
+				UI_NavFavRemove->CBAction = RemoveFavorite;
+				UpdateFavorites(UI_NavFav);
 
 				// Left Panel
 				UI_Left = CreateGroup(NavWidth, HeadHeight * 3, (UI_Work->W() / 2)-NavWidth, UI_Work->H() - (HeadHeight * 3), UI_Work);
