@@ -35,6 +35,7 @@ namespace Slyvina{
 			void Renew();
 			void Renew(std::string Path);
 			void Renew(std::string JCRFile,std::string Path);
+			String CurrentJCRFile();
 
 			std::string GRJType(std::string f);
 

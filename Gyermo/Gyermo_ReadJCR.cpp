@@ -33,6 +33,8 @@
 #include <TQSE.hpp>
 #include <Kitty_High.hpp>
 #include "Gyermo_View.hpp"
+#include "Gyermo_GUI.hpp"
+#include "Gyermo_Config.hpp"
 using namespace Slyvina::TQSE;
 using namespace Slyvina::Units;
 using namespace Slyvina::Kitty;
@@ -44,6 +46,11 @@ namespace Slyvina {
 			static std::string __CurrentPath;
 			static std::string __CurrentJCRFile;
 			static JT_Dir __CurrentJCR{ nullptr };
+
+
+			String Slyvina::JCR6::Gyermo::CurrentJCRFile() {
+				return __CurrentJCRFile;
+			}
 
 			void Renew() {
 				UI_FileList->ClearItems();
@@ -147,6 +154,7 @@ namespace Slyvina {
 				__CurrentJCR = __CurrentJCR && __CurrentJCRFile == JCRFile ? __CurrentJCR : JCR6_Dir(JCRFile);
 				__CurrentJCRFile = JCRFile;
 				__CurrentPath = Path;
+				AddUsed(UI_NavUsed, __CurrentJCRFile);
 				Renew();
 			}
 
