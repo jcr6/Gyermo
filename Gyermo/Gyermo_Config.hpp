@@ -22,8 +22,10 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.24
+// Version: 24.11.26
 // End License
+
+#pragma once
 #include <string>
 #include <june19_core.hpp>
 #include "Gyermo_Colors.hpp"
