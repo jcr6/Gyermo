@@ -191,6 +191,7 @@
     <ClCompile Include="..\..\..\Libs\Units\Source\SlyvMD5.cpp" />
     <ClCompile Include="..\..\..\Libs\Units\Source\SlyvOpenURL.cpp" />
     <ClCompile Include="..\..\..\Libs\Units\Source\SlyvQCol.cpp" />
+    <ClCompile Include="..\..\..\Libs\Units\Source\SlyvRequestFile.cpp" />
     <ClCompile Include="..\..\..\Libs\Units\Source\SlyvRoman.cpp" />
     <ClCompile Include="..\..\..\Libs\Units\Source\SlyvSharedArray.cpp" />
     <ClCompile Include="..\..\..\Libs\Units\Source\SlyvSTOI.cpp" />

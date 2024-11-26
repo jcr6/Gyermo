@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26 I
+// Version: 24.11.26 II
 // End License
 #pragma once
 #include <string>
@@ -41,6 +41,8 @@ namespace Slyvina{
 
 			void Act_FileList(June19::j19gadget*, June19::j19action);
 			void Act_UFP(June19::j19gadget* g, June19::j19action);
+			void Extract(std::string src, std::string tgt);
+			void ExtractButton(June19::j19gadget*, June19::j19action);
 		} 
 	} 
 }

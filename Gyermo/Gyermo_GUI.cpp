@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26 IV
+// Version: 24.11.26 V
 // End License
 #include <map>
 #include <june19.hpp>
@@ -275,6 +275,8 @@ namespace Slyvina {
 				ColorGadget(UI_FileList, "FileList", "White", "BrightBlue");
 				UI_Extract = CreateButton("Extract", 0, 0, UI_Left);
 				UI_ExtractAll = CreateButton("Extract All", 0, 0, UI_Left);
+				UI_Extract->CBAction = ExtractButton;
+
 				ColorGadget(UI_Extract, "Extract", "Yellow", "Brown");
 				ColorGadget(UI_ExtractAll, "Extract", "Yellow", "Brown");
 				UI_Extract->CBDraw = Draw_Extract;

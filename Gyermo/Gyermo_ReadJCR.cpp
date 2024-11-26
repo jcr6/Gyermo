@@ -22,16 +22,20 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26 II
+// Version: 24.11.26 IV
 // End License
 
-#include "Gyermo_ReadJCR.hpp"
-#include "Gyermo_GUI.hpp"
+#include <Slyvina.hpp>
+#ifdef SlyvWindows
+#include <SlyvRequestFile.hpp>
+#endif
 #include <JCR6_Core.hpp>
 #include <SlyvQCol.hpp>
 #include <SlyvDir.hpp>
 #include <TQSE.hpp>
 #include <Kitty_High.hpp>
+#include "Gyermo_ReadJCR.hpp"
+#include "Gyermo_GUI.hpp"
 #include "Gyermo_View.hpp"
 #include "Gyermo_GUI.hpp"
 #include "Gyermo_Config.hpp"
@@ -283,6 +287,36 @@ namespace Slyvina {
 				if (g->SelectedItem() < 0) return;
 				auto res{ CFGV(g->HData,g->ItemText()) };
 				res.size() ? Renew(res, "") : Notify("Apparently your request got me an empty record in the database!");
+			}
+			void Extract(std::string src, std::string tgt) {
+				if (!__CurrentJCR) return;
+				auto B{ __CurrentJCR->B(src) };
+				if (Last()->Error) { Notify("JCR6 Error: " + Last()->ErrorMessage + "\n\nEntry: " + Last()->Entry + "\nMain:  " + Last()->MainFile); return; }
+				if (!B) { Notify("Extracting " + src + " failed for unknown reasons!"); return; }
+				try {
+					QCol->Doing("Extracting", src, " "); QCol->Yellow("to "); QCol->Cyan(tgt + "\n");
+					auto BT{ WriteFile(tgt) };
+					B->Position(0);
+					while (!B->AtEnd()) { BT->Write(B->ReadByte()); } // Dirty, but it least it won't quit on nullbytes.
+					BT->Close();
+				} catch (std::runtime_error e) {
+					Notify("Error during writing: " + tgt + "\n\n" + e.what());
+				}
+			}
+			void ExtractButton(June19::j19gadget*, June19::j19action) {
+				String
+					src{ __CurrentPath + (__CurrentPath.size() ? "/" : "") + UI_FileList->ItemText() },
+					tgt{ "" };
+				if (!src.size()) return;
+#ifdef SlyvLinux
+				Notify("I'm sorry to inform you, that this feature is not (yet) available in Linux.\nIt's on the planboard.");
+#elif defined(SlyvWindows)
+				tgt = RequestFile("Extract " + src + " to:", CurrentDir(), "All:*\000", true);
+#else
+				Notify("Not available on this platform!");
+#endif
+				if (!tgt.size()) return;
+				Extract(src, tgt);
 			}
 		}
 	} 
