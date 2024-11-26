@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.25 II
+// Version: 24.11.26
 // End License
 #include <map>
 #include <june19.hpp>
@@ -32,6 +32,7 @@
 #include "Gyermo_Config.hpp"
 #include "Gyermo_ReadJCR.hpp"
 #include "Gyermo_View.hpp"
+#include <SlyvVolumes.hpp>
 
 using namespace Slyvina::TQSG;
 using namespace Slyvina::TQSE;
@@ -50,6 +51,9 @@ namespace Slyvina {
 
 			static String UI_CurrentTab{ "Data" };
 			static std::map<String,j19gadget*> UI_TabPanels{};
+			static std::map<String, j19gadget*> UI_NavRadio{ {"Volumes",nullptr},{"Used",nullptr},{"Favorites",nullptr} };
+			static std::map<String, j19gadget*> UI_NavPanels{ };
+		
 			std::map<String, j19gadget*>
 				UI_DataFields{},
 				UI_BlockFields{};
@@ -58,6 +62,7 @@ namespace Slyvina {
 				* UI_Work{ nullptr },
 				* UI_Background{ nullptr },
 				* UI_Header{ nullptr },
+				* UI_Nav{nullptr},
 				* UI_Left{ nullptr },
 				* UI_TabData{ nullptr },
 				* UI_TabBlock{ nullptr },
@@ -129,12 +134,32 @@ namespace Slyvina {
 
 			}
 
+			static void DrawNavRadio(j19gadget* me, j19action) {
+				UI_NavPanels[me->Caption]->Visible = me->checked;
+				ColorGadget(
+					me,
+					me->checked ? "Nav_Checked" : "Nav_UnChecked",
+					me->checked ? "White" : "Grey",
+					"Black"
+				);
+			}
+
+			static void NavSelectVolume(j19gadget* vl, j19action) {
+				if (vl->SelectedItem() < 0) return;
+				auto vn{ vl->ItemText() };
+				if (!vn.size()) return;
+				auto gt{ AVolPath(vn + ":") };
+				Renew(gt);
+			}
+
 #define DataTab 150
+#define NavWidth 300
 #define DataField(gadget,Caption) ColorGadget(CreateLabel(Caption,2,y,DataTab,HeadHeight,CPan),"Tab_Data"); gadget=CreateLabel("--",DataTab,y,CPan->W(),HeadHeight,CPan); ColorGadget(gadget,"FLD_DATA","Yellow","Black"); y+=HeadHeight
 #define BlckField(gadget,Caption) ColorGadget(CreateLabel(Caption,2,y,DataTab,HeadHeight,UI_BlckGroup),"Tab_Block"); gadget=CreateLabel("--",DataTab,y,CPan->W(),HeadHeight,UI_BlckGroup); ColorGadget(gadget,"FLD_BLOCK","180,255,0","Black"); y+=HeadHeight
 
 			void UI_Init() {				
-				const int HeadHeight{ 15 };
+				// Main
+				const int HeadHeight{ 16 };
 				const int Tab{ 150 };
 				Graphics((int)floor(DesktopWidth() * .95), (int)floor(DesktopHeight() * .80), "Gyermo");
 				QCol->Doing("Font", "Fonts/DOS.jfbf");
@@ -158,7 +183,27 @@ namespace Slyvina {
 				UI_Directory = CreateLabel("*Directory", Tab, HeadHeight * 2, UI_Work->W() - (Tab + 5), HeadHeight, UI_Work);
 				ColorGadget(UI_Resource, "FIELD", "BrightBlue", "BrightBlue");
 				ColorGadget(UI_Directory, "FIELD", "BrightBlue", "BrightBlue");
-				UI_Left = CreateGroup(0, HeadHeight * 3, UI_Work->W() / 2, UI_Work->H() - (HeadHeight * 3), UI_Work);
+
+				// Nav Panel
+				UI_Nav = CreateGroup(0, HeadHeight * 3, NavWidth, UI_Work->H() - (HeadHeight * 4), UI_Work);
+				UI_NavPanels["Volumes"] = CreateListBox(0, HeadHeight * UI_NavRadio.size(), UI_Nav->W(), UI_Nav->H()-(HeadHeight*UI_NavRadio.size()), UI_Nav);
+				for (auto uinp : UI_NavRadio) {
+					auto& uin{ uinp.first };
+					UI_NavRadio[uin] = CreateRadioButton(uin, 0, 0, UI_Nav->W(), HeadHeight, UI_Nav);
+					UI_NavPanels[uin] = UI_NavPanels[uin] ? UI_NavPanels[uin] : CreateGroup(0, 0, UI_Nav->W(), UI_Nav->H() - (HeadHeight * UI_NavRadio.size()), UI_Nav);
+					UI_NavRadio[uin]->CBDraw = DrawNavRadio;
+				}
+				UI_NavRadio["Volumes"]->Y(0); UI_NavRadio["Volumes"]->checked = true;
+				UI_NavRadio["Used"]->Y(HeadHeight);
+				UI_NavRadio["Favorites"]->Y(HeadHeight * 2);
+				ColorGadget(UI_NavPanels["Volumes"], "Nav_Volumes", "BrightBlue", "Blue");
+				QCol->Doing("Scanning", "Volumes");
+				auto V{ Volumes() };
+				UI_NavRadio["Volumes"]->ClearItems();
+				for (auto vol : *V) UI_NavPanels["Volumes"]->AddItem(vol.first);
+				UI_NavPanels["Volumes"]->CBAction = NavSelectVolume;
+				// Left Panel
+				UI_Left = CreateGroup(NavWidth, HeadHeight * 3, (UI_Work->W() / 2)-NavWidth, UI_Work->H() - (HeadHeight * 3), UI_Work);
 				UI_Right = CreateGroup(UI_Work->W() / 2, HeadHeight * 3, UI_Work->W() / 2, UI_Work->H() - (HeadHeight * 4), UI_Work);
 				UI_FileList = CreateListBox(5, 5, UI_Left->W() - 35, UI_Left->H() - 100, UI_Left);
 				UI_FileList->CBAction = Act_FileList;
