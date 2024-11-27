@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.24
+// Version: 24.11.27
 // End License
 #include "Gyermo_Assets.hpp"
 
@@ -39,7 +39,7 @@ namespace Slyvina {
 			static JT_Dir Res{ nullptr };
 
 			void Asset_Init(String Exe) {
-				ResFile = _JT_Dir::Recognize(Exe) == "JCR6" ? ResFile = Exe : ResFile = StripExt(Exe) + ".jcr";
+				ResFile = _JT_Dir::Recognize(Exe) != "NONE" ? ResFile = Exe : ResFile = StripExt(Exe) + ".jcr";
 			}
 			JT_Dir Assets() {
 				if (!Res) {
