@@ -63,9 +63,9 @@ Add("JCR6",[
 Add("Kitty",Glob("../../Libs/Kitty/Source/*.cpp"))
 
 Add("TQSL",[
-    "../../Libs/TQSL/TQSG.cpp",
-    "../../Libs/TQSL/TQSA.cpp"
-    "../../Libs/TQSL/TQSE.cpp"]
+    "../../Libs/TQSL/Source/TQSG.cpp",
+    "../../Libs/TQSL/Source/TQSA.cpp"
+    "../../Libs/TQSL/Source/TQSE.cpp"]
     )
 Add("June 19", Glob("../../Libs/June19/src/*.cpp"))
 Add("Units",[
