@@ -6,7 +6,7 @@ from os import environ
 Allowed = ("Linux")
 def IsAllowed():
     for a in Allowed: 
-        if a==platform.system: 
+        if a==platform.system(): 
             return True
     return False
 
