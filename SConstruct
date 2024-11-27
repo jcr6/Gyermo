@@ -70,21 +70,21 @@ Add("TQSL",[
     )
 Add("June 19", Glob("../../Libs/June19/src/*.cpp"))
 Add("Units",[
-    "../../Libs/Units/SlyvAsk.cpp",
-    "../../Libs/Units/SlyvBank.cpp",
-    "../../Libs/Units/SlyvDir.cpp",
-    "../../Libs/Units/SlyvDirry.cpp",
-    "../../Libs/Units/SlyvMD5.cpp",
-    "../../Libs/Units/SlyvOpenURL.cpp",
-    "../../Libs/Units/SlyvQCol.cpp",
-    "../../Libs/Units/SlyvRequestFile.cpp",
-    "../../Libs/Units/SlyvRoman.cpp",
-    "../../Libs/Units/SlyvSharedArray.cpp",
-    "../../Libs/Units/SlyvSTOI.cpp",
-    "../../Libs/Units/SlyvStream.cpp",
-    "../../Libs/Units/SlyvString.cpp",
-    "../../Libs/Units/SlyvTime.cpp",
-    "../../Libs/Units/SlyvVolumes.cpp"    
+    "../../Libs/Units/Source/SlyvAsk.cpp",
+    "../../Libs/Units/Source/SlyvBank.cpp",
+    "../../Libs/Units/Source/SlyvDir.cpp",
+    "../../Libs/Units/Source/SlyvDirry.cpp",
+    "../../Libs/Units/Source/SlyvMD5.cpp",
+    "../../Libs/Units/Source/SlyvOpenURL.cpp",
+    "../../Libs/Units/Source/SlyvQCol.cpp",
+    "../../Libs/Units/Source/SlyvRequestFile.cpp",
+    "../../Libs/Units/Source/SlyvRoman.cpp",
+    "../../Libs/Units/Source/SlyvSharedArray.cpp",
+    "../../Libs/Units/Source/SlyvSTOI.cpp",
+    "../../Libs/Units/Source/SlyvStream.cpp",
+    "../../Libs/Units/Source/SlyvString.cpp",
+    "../../Libs/Units/Source/SlyvTime.cpp",
+    "../../Libs/Units/Source/SlyvVolumes.cpp"    
 ])
 Add("Gyermo",Glob("Gyermo/*.cpp"))
 
