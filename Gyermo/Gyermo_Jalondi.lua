@@ -30,7 +30,7 @@ Jalondi.Doing("Platform",Jalondi.Platform)
 if Jalondi.Platform=="Windows" then
 	BaseDir="/Projects"
 elseif Jalondi.Platform=="Linux" then
-	BaseDir="../../../.."
+	BaseDir="../../../.." -- May need to be changed later, but for now it will do!
 	--error("Linux Scripting not yet properly set up")
 else
 	error("Unknown platform")
