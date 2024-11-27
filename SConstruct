@@ -6,6 +6,7 @@ from os import environ
 Allowed = ("Linux")
 def IsAllowed():
     for a in Allowed: 
+        print("%s == %s -> %s"%(a,platform.system(),a==platform.system()) # debug only!
         if a==platform.system(): 
             return True
     return False
