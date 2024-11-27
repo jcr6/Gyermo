@@ -5,7 +5,9 @@ from os import environ
 
 Allowed = ("Linux")
 def IsAllowed():
-    for a in Allowed: if a==platform.system: return True
+    for a in Allowed: 
+        if a==platform.system: 
+            return True
     return False
 
 Today = date.today().strftime("%b %d %y")
