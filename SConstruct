@@ -88,4 +88,4 @@ Add("Units",[
 ])
 Add("Gyermo",Glob("Gyermo/*.cpp"))
 
-Program("Exe/%s/Gyermo"%platform.system(),Files,CPPPATH=IncludeDirs)
+Program("Exe/%s/Gyermo"%platform.system(),Files,CPPPATH=IncludeDirs,LIBS=Libs)
