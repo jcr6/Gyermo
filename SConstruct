@@ -3,7 +3,7 @@ from datetime import date
 from os import system
 from os import environ
 
-Allowed = ("Linux")
+Allowed = ["Linux"]
 def IsAllowed():
     for a in Allowed: 
         print("%s == %s -> %s"%(a,platform.system(),a==platform.system())) # debug only!
