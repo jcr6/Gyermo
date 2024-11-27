@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.27 I
+// Version: 24.11.28
 // End License
 #include <Slyvina.hpp>
 #ifdef SlyvLinux
@@ -37,6 +37,7 @@
 #include <JCR6_QuakePAK.hpp>
 #include <JCR6_RealDir.hpp>
 #include <JCR6_WAD.hpp>
+#include <JCR6_TAR.hpp>
 #include <JCR6_zlib.hpp>
 #include <High_Headers.hpp>
 #include "Gyermo_GUI.hpp"
@@ -58,6 +59,7 @@ int main(int argc, char** args) {
 	InitQuake();
 	InitWAD();
 	init_zlib();
+	InitTAR(); 
 	Kitty::KittyHigh_ALL();
 	JCR6_InitRealDir();
 	Asset_Init(args[0]);

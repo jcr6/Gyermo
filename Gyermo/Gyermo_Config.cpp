@@ -22,9 +22,10 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26 III
+// Version: 24.11.28
 // End License
 
+#include <JCR6_TAR.hpp>
 #include <SlyvDirry.hpp>
 #include <SlyvGINIE.hpp>
 #include <SlyvQCol.hpp>
@@ -43,6 +44,9 @@ namespace Slyvina {
 					QCol->Doing("Reading", ConfigFile());
 					_Config = LoadOptGINIE(ConfigFile(), ConfigFile(), "Gyermo configuration\n(c) Jeroen P. Broks");
 				}
+				TAR_ReturnWhatIHave = Upper(_Config->NewValue("TAR", "RETURN_WHAT_I_HAVE", "TRUE")) == "TRUE";
+				TAR_ThoroughCheck = Upper(_Config->NewValue("TAR", "THOROUGH_CHECK", "FALSE")) == "TRUE";
+				TAR_SymLinking = Upper(_Config->NewValue("TAR", "SYMLINKING", "FALSE")) == "TRUE";
 			}
 
 			void ClearUsed(June19::j19gadget* lb,June19::j19action) {
