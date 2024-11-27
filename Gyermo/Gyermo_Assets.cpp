@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.27 III
+// Version: 24.11.27 IV
 // End License
 #include "Gyermo_Assets.hpp"
 
@@ -41,7 +41,7 @@ namespace Slyvina {
 			void Asset_Init(String Exe) {
 				//std::cout << "JCR6 DEBUG: " << Exe << " recognized as " << _JT_Dir::Recognize(Exe);
 #ifdef SlyvLinux
-				ResFile = _JT_Dir::Recognize(Exe) != "proc/self/exe" ? ResFile = "proce/self/exe" : (_JT_Dir::Recognize(Exe) != "NONE" ? ResFile = Exe : ResFile = StripExt(Exe) + ".jcr");
+				ResFile = _JT_Dir::Recognize(Exe) != "proc/self/exe" ? ResFile = "proc/self/exe" : (_JT_Dir::Recognize(Exe) != "NONE" ? ResFile = Exe : ResFile = StripExt(Exe) + ".jcr");
 #else
 				ResFile = _JT_Dir::Recognize(Exe) != "NONE" ? ResFile = Exe : ResFile = StripExt(Exe) + ".jcr";
 #endif
