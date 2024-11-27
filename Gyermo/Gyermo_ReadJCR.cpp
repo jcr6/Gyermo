@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.26 V
+// Version: 24.11.27
 // End License
 
 #include <Slyvina.hpp>
@@ -137,7 +137,7 @@ namespace Slyvina {
 					Renew();
 				}
 #else
-				if (Path = "/") {
+				if (Path == "/") {
 					__CurrentPath = "/";
 					Renew();
 				}
