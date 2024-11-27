@@ -22,7 +22,7 @@
 # 	Please note that some references to data like pictures or audio, do not automatically
 # 	fall under this licenses. Mostly this is noted in the respective files.
 # 
-# Version: 24.11.27 II
+# Version: 24.11.27 III
 # End License
 echo "Gyermo Installation Script for Linux!"
 echo "(c) Jeroen P. Broks"
@@ -33,7 +33,7 @@ if [ -e Exe/Linux/Gyermo ]; then
 	#echo "The system may now ask for your password. Don't worry, this is just done by Linux itself!"
 	echo "If the system says 'permission denied' or anything similar, please run this script again with 'sudo'!"
 	cat Exe/Linux/Gyermo Exe/Linux/Gyermo.jcr > /usr/bin/gyermo
-	chmod /usr/bin/gyermo +x
+	chmod +x /usr/bin/gyermo
    else
         echo "Gyermo.jcr was not present. The Jalondi script was not properly executed."
         echo "Try Gyermo_LinuxBuild.sh first!"
