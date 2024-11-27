@@ -243,6 +243,9 @@
     <ClCompile Include="..\..\..\Libs\Units\Source\SlyvRequestFile.cpp">
       <Filter>Source Files\Slyvina\Units</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_TAR.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gyermo_Colors.hpp">

@@ -145,6 +145,7 @@
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_JQL.cpp" />
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_QuakePAK.cpp" />
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp" />
+    <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_TAR.cpp" />
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_WAD.cpp" />
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Westwood.cpp" />
     <ClCompile Include="..\..\..\Libs\JCR6\Source\JCR6_Write.cpp" />
