@@ -59,6 +59,8 @@ Add("JCR6",[
     "../../Libs/JCR6/Source/JCR6_JQL.cpp",
     "../../Libs/JCR6/Source/JCR6_RealDir.cpp",
     "../../Libs/JCR6/Source/JCR6_Write.cpp",
+    "../../Libs/JCR6/Source/JCR6_WAD.cpp",
+    "../../Libs/JCR6/Source/JCR6_QuakePAK.cpp",
     "../../Libs/JCR6/Source/JCR6_zlib.cpp"])
 
 Add("Kitty",Glob("../../Libs/Kitty/Source/*.cpp"))
