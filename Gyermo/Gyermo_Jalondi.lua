@@ -22,7 +22,7 @@
 -- 	Please note that some references to data like pictures or audio, do not automatically
 -- 	fall under this licenses. Mostly this is noted in the respective files.
 -- 
--- Version: 24.11.27
+-- Version: 24.11.27 I
 -- End License
 Jalondi.Doing("Scripting","Jalondi")
 Jalondi.Doing("Platform",Jalondi.Platform)
@@ -30,7 +30,7 @@ Jalondi.Doing("Platform",Jalondi.Platform)
 if Jalondi.Platform=="Windows" then
 	BaseDir="/Projects"
 elseif Jalondi.Platform=="Linux" then
-	BaseDir="../../../.."
+	BaseDir="../../../.." -- May need to be changed later, but for now it will do!
 	--error("Linux Scripting not yet properly set up")
 else
 	error("Unknown platform")
