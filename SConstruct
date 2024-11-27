@@ -27,7 +27,7 @@ IncludeDirs = [
     "../../Libs/JCR6/Headers",
     "../../Libs/TQSL/Headers",
     "../../Libs/Units/Headers",
-    "../../Libs/JCR6/3rdParty/zlib/src"
+    "../../Libs/JCR6/3rdParty/zlib/src",
     "../../Libs/June19/head",
     "../../Libs/Kitty/Headers"
     ]
