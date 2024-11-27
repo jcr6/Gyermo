@@ -22,7 +22,7 @@
 // 	Please note that some references to data like pictures or audio, do not automatically
 // 	fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.11.27 I
+// Version: 24.11.27 II
 // End License
 
 #include <Slyvina.hpp>
@@ -53,7 +53,7 @@ namespace Slyvina {
 			static JT_Dir __CurrentJCR{ nullptr };
 
 
-			String Gyermo::CurrentJCRFile() {
+			String CurrentJCRFile() {
 				return __CurrentJCRFile;
 			}
 
