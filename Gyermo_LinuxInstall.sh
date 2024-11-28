@@ -22,7 +22,7 @@
 # 	Please note that some references to data like pictures or audio, do not automatically
 # 	fall under this licenses. Mostly this is noted in the respective files.
 # 
-# Version: 24.11.27 IV
+# Version: 24.11.28
 # End License
 echo "Gyermo Installation Script for Linux!"
 echo "(c) Jeroen P. Broks"
